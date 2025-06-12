@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>List of Posts</h1>
+    <a href="/posts/create">Add New Post</a>
 
     @foreach($posts as $post)
         <div style="margin-bottom: 20px;">
