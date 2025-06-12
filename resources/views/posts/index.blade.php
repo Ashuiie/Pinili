@@ -4,6 +4,9 @@
     <title>All Posts</title>
 </head>
 <body>
+    <p>Welcome, {{ auth()->user()->name }}!</p>
+<a href="/logout">Logout</a>
+
     <h1>List of Posts</h1>
     <a href="/posts/create">Add New Post</a>
 
