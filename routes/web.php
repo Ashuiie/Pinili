@@ -1,21 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
-
-use App\Http\Controllers\PostController;
-
-Route::get('/posts', [PostController::class, 'index']);         // View all
-Route::get('/posts/create', [PostController::class, 'create']); // Create form
-Route::post('/posts', [PostController::class, 'store']);        // Save to database
-
-Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
-Route::put('/posts/{id}', [PostController::class, 'update']);
-Route::delete('/posts/{id}', [PostController::class, 'destroy']);
-
-
 
 Route::get('/', function () {
-    $posts = Post::all();
-    return view('posts.index', compact('posts'));
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
