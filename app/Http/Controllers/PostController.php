@@ -20,4 +20,23 @@ class PostController extends Controller
         Post::create($request->all());
         return redirect('/posts');
     }
+
+    public function edit($id) {
+    $post = Post::findOrFail($id);
+    return view('posts.edit', compact('post'));
+}
+
+public function update(Request $request, $id) {
+    $post = Post::findOrFail($id);
+    $post->update($request->all());
+    return redirect('/posts');
+}
+
+public function destroy($id) {
+    $post = Post::findOrFail($id);
+    $post->delete();
+    return redirect('/posts');
+}
+
+    
 }

@@ -9,6 +9,11 @@ Route::get('/posts', [PostController::class, 'index']);         // View all
 Route::get('/posts/create', [PostController::class, 'create']); // Create form
 Route::post('/posts', [PostController::class, 'store']);        // Save to database
 
+Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
+Route::put('/posts/{id}', [PostController::class, 'update']);
+Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+
+
 
 Route::get('/', function () {
     $posts = Post::all();

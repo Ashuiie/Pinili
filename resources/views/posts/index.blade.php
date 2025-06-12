@@ -11,6 +11,15 @@
         <div style="margin-bottom: 20px;">
             <h2>{{ $post->title }}</h2>
             <p>{{ $post->content }}</p>
+
+        <a href="/posts/{{ $post->id }}/edit">Edit</a>
+
+<form action="/posts/{{ $post->id }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" onclick="return confirm('Delete this post?')">Delete</button>
+</form>
+
         </div>
     @endforeach
 </body>
